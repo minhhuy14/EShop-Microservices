@@ -1,6 +1,6 @@
 namespace CatalogAPI.Products.CreateProduct;
 
-public class CreateProductDto
+public class CreateProductDto(Guid newGuid)
 {
     
 }
