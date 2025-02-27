@@ -10,6 +10,7 @@ internal class CreateProductCommandHandler(IDocumentSession session):ICommandHan
 
          var product = new Product
          {
+             Id=Guid.NewGuid().ToString(),
              Name = command.Name,
              Categories = command.Categories,
              Description = command.Description,
@@ -20,6 +21,9 @@ internal class CreateProductCommandHandler(IDocumentSession session):ICommandHan
             session.Store(product);
             await session.SaveChangesAsync(cancellationToken);
 
-            return new CreateProductDto(product.Id);
+            return new CreateProductDto
+            {
+                Id = product.Id
+            };
     }
 }
