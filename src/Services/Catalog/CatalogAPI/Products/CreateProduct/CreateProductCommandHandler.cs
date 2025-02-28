@@ -23,7 +23,13 @@ internal class CreateProductCommandHandler(IDocumentSession session):ICommandHan
 
             return new CreateProductDto
             {
-                Id = product.Id
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                ImageFile = product.ImageFile,
+                Categories = product.Categories
+                
             };
     }
 }
