@@ -1,14 +1,17 @@
+using Microsoft.AspNetCore.Http.HttpResults;
+
 namespace CatalogAPI.Products.GetProductById;
 
-public class GetProductByQueryEndpoint:ICarterModule
+public class GetProductByIdQueryEndpoint:ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/products/{id}", async (string id, ISender sender) =>
             {
                 var query = new GetProductByIdQuery { Id = id };
+                
                 var response = await sender.Send(query);
-
+                
                 return Results.Ok(response);
             })
             .WithName("GetProductById")
