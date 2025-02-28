@@ -1,3 +1,5 @@
+using CatalogAPI.DTOs;
+
 namespace CatalogAPI.Products.GetProducts;
 
 internal class GetProductsQueryHandler(IDocumentSession session,ILogger<GetProductsQueryHandler> logger): IQueryHandler<GetProductsQuery, GetProductsResponse>
@@ -8,7 +10,7 @@ internal class GetProductsQueryHandler(IDocumentSession session,ILogger<GetProdu
         
         var products = await session.Query<Product>().ToListAsync(cancellationToken);
         
-        var listProducts = products.Select(p => new GetProductsDto
+        var listProducts = products.Select(p => new GetProductDto
         {
             Id = p.Id,
             Name = p.Name,

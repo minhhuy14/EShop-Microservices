@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-namespace CatalogAPI.Products.GetProducts;
+namespace CatalogAPI.DTOs;
 
-public class GetProductsDto
+public class GetProductDto
 {
     public string Id { get; set; } = null!;
     
