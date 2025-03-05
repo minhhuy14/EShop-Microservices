@@ -1,8 +1,10 @@
+using BuildingBlocks.Exceptions;
+
 namespace CatalogAPI.Exceptions;
 
-public class ProductNotFoundException:Exception
+public class ProductNotFoundException:NotFoundException
 {
-    public ProductNotFoundException():base($"Product was not found")
+    public ProductNotFoundException(string Id):base("Product", Id)
     {
         
     }

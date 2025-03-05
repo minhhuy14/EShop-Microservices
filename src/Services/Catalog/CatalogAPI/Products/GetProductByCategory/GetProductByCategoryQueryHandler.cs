@@ -11,7 +11,7 @@ public class GetProductByCategoryQueryHandler(IDocumentSession session,ILogger<G
             .ToListAsync(cancellationToken);
         if (product == null)
         {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException(query.Category);
         }
         
         var response = new GetProductByCategoryResponse
