@@ -1,4 +1,5 @@
 using CatalogAPI.DTOs;
+using Marten.Pagination;
 
 namespace CatalogAPI.Products.GetProducts;
 
@@ -6,7 +7,7 @@ internal class GetProductsQueryHandler(IDocumentSession session): IQueryHandler<
 {
     public async Task<GetProductsResponse> Handle(GetProductsQuery query, CancellationToken cancellationToken)
     {
-        var products = await session.Query<Product>().ToListAsync(cancellationToken);
+        var products = await session.Query<Product>().ToPagedListAsync(query.PageNumber ?? 1, query.PageSize ?? 10, cancellationToken);
         
         var listProducts = products.Select(p => new GetProductDto
         {
