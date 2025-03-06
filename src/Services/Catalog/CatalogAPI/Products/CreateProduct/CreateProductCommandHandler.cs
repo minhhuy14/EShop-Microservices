@@ -6,8 +6,8 @@ internal class CreateProductCommandHandler(IDocumentSession session):ICommandHan
     {
        //Business Logic to create a product
        //Create product entity from command object
-         //Save the product entity to the database
-
+       //Save the product entity to the database
+         
          var product = new Product
          {
              Id=Guid.NewGuid().ToString(),
@@ -23,7 +23,13 @@ internal class CreateProductCommandHandler(IDocumentSession session):ICommandHan
 
             return new CreateProductDto
             {
-                Id = product.Id
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                ImageFile = product.ImageFile,
+                Categories = product.Categories
+                
             };
     }
 }
