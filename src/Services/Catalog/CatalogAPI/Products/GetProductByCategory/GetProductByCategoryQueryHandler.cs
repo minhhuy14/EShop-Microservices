@@ -1,11 +1,9 @@
 namespace CatalogAPI.Products.GetProductByCategory;
 
-public class GetProductByCategoryQueryHandler(IDocumentSession session,ILogger<GetProductByCategoryQueryHandler> logger): IQueryHandler<GetProductByCategoryQuery, GetProductByCategoryResponse>
+public class GetProductByCategoryQueryHandler(IDocumentSession session): IQueryHandler<GetProductByCategoryQuery, GetProductByCategoryResponse>
 {
     public async Task<GetProductByCategoryResponse> Handle(GetProductByCategoryQuery query, CancellationToken cancellationToken)
     {
-        logger.LogInformation("GetProductByCategoryQueryHandler.Handle {@Query}", query);
-        
         var product = await session.Query<Product>()
             .Where(p => p.Categories.Contains(query.Category))
             .ToListAsync(cancellationToken);

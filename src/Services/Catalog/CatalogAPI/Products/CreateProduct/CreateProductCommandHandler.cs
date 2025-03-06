@@ -1,15 +1,13 @@
 namespace CatalogAPI.Products.CreateProduct;
 
-internal class CreateProductCommandHandler(IDocumentSession session, ILogger<CreateProductCommandHandler> logger):ICommandHandler<CreateProductCommand,CreateProductDto>
+internal class CreateProductCommandHandler(IDocumentSession session):ICommandHandler<CreateProductCommand,CreateProductDto>
 {
     public async Task<CreateProductDto> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
        //Business Logic to create a product
        //Create product entity from command object
-         //Save the product entity to the database
-        
-         logger.LogInformation("CreateProductCommandHandler.Handle {@Command}", command);
-
+       //Save the product entity to the database
+         
          var product = new Product
          {
              Id=Guid.NewGuid().ToString(),
