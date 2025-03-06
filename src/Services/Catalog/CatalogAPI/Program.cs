@@ -14,10 +14,17 @@ builder.Services.AddValidatorsFromAssembly(assembly);
 
 builder.Services.AddCarter();
 
-builder.Services.AddMarten(opts =>
+builder.Services.AddMarten(
+    opts =>
+    {
+        opts.Connection(builder.Configuration.GetConnectionString("Database")!);
+    }
+).UseLightweightSessions();
+
+if (builder.Environment.IsDevelopment())
 {
-    opts.Connection(builder.Configuration.GetConnectionString("Database")!);
-}).UseLightweightSessions();
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+}
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
