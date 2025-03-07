@@ -1,6 +1,3 @@
-using CatalogAPI.DTOs;
-using CatalogAPI.Exceptions;
-
 namespace CatalogAPI.Products.GetProductById;
 
 public class GetProductByIdQueryHandler(IDocumentSession session): IQueryHandler<GetProductByIdQuery, GetProductByIdResponse>

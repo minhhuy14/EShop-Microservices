@@ -1,10 +1,7 @@
-using CatalogAPI.Products.CreateProduct;
-
 namespace CatalogAPI.Products.UpdateProduct;
 
 internal class UpdateProductCommandHandler(IDocumentSession session):ICommandHandler<UpdateProductCommand,UpdateProductDto>
 {
-
     public async Task<UpdateProductDto> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
         //Business Logic to create a product
