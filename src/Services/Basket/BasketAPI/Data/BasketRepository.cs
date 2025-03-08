@@ -1,5 +1,3 @@
-using BasketAPI.Exceptions;
-
 namespace BasketAPI.Data;
 
 public class BasketRepository(IDocumentSession session):IBasketRepository
@@ -11,7 +9,7 @@ public class BasketRepository(IDocumentSession session):IBasketRepository
         return basket is null ? throw new BasketNotFoundException(userName) : basket;
     }
 
-    public async Task<ShoppingCart> UpdateBasket(ShoppingCart basket, CancellationToken cancellationToken = default)
+    public async Task<ShoppingCart> StoreBasket(ShoppingCart basket, CancellationToken cancellationToken = default)
     {
         session.Store(basket);
         

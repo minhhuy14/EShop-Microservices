@@ -7,5 +7,5 @@ public class DeleteBasketCommand:ICommand<DeleteBasketResponse>
 
 public class DeleteBasketResponse
 {
-    public string IsSuccess { get; set; }
+    public bool IsSuccess { get; set; }
 }

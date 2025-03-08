@@ -1,6 +1,6 @@
 namespace BasketAPI.Basket.GetBasket;
 
-public class GetBasketQuery(string userName) :IQuery<GetBasketResponse>
+public class GetBasketQuery:IQuery<GetBasketResponse>
 {
     public string UserName { get; set; }
     

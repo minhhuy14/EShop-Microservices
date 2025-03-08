@@ -39,6 +39,8 @@ builder.Services.AddSwaggerGen(c =>
 // builder.Services.AddHealthChecks()
 //     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
 
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
 var app = builder.Build();
 
 //Configure the HTTP request pipeline.

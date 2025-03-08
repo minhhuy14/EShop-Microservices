@@ -10,3 +10,5 @@ global using Marten;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 global using Microsoft.OpenApi.Models;
 global using BuildingBlocks.Exceptions;
+global using BasketAPI.Data;
+global using BasketAPI.Exceptions;
