@@ -1,6 +1,4 @@
-﻿version: '3.8'
-
-services:
+﻿services:
   catalogdb:
     image: postgres:latest
     networks:
@@ -10,6 +8,8 @@ services:
     image: postgres:latest
     networks:
       - app-network
+  distributedcache:
+    image: redis
     
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi

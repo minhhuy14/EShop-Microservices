@@ -41,6 +41,21 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
+builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+
+builder.Services.AddStackExchangeRedisCache(options=>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis")!;
+});
+
+// builder.Services.AddScoped<IBasketRepository>(provider => 
+// {
+//         var basketRepository = provider.GetRequiredService<IBasketRepository>();
+//
+//         return new CachedBasketRepository(basketRepository, provider.GetRequiredService<IDistributedCache>());
+// });
+
+
 var app = builder.Build();
 
 //Configure the HTTP request pipeline.
