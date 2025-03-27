@@ -1,0 +1,24 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  catalog.api:
+    build:
+      context: "D:\\WORKSPACE\\LearningDOTNET\\E-Commerce-Course\\EShop-Microservices\\\
+        src"
+      dockerfile: "Services/Catalog/CatalogAPI/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/CatalogAPI.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "catalogapi:dev"
+    ports: []
+    volumes:
+    - "D:\\WORKSPACE\\LearningDOTNET\\E-Commerce-Course\\EShop-Microservices\\src\\\
+      Services\\Catalog\\CatalogAPI:/app:rw"
+    - "D:\\WORKSPACE\\LearningDOTNET\\E-Commerce-Course\\EShop-Microservices\\src:/src:rw"
+    - "C:\\Users\\ADMIN\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"

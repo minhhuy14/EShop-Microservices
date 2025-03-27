@@ -12,3 +12,5 @@ global using BuildingBlocks.Exceptions.Handler;
 global using CatalogAPI.Data;
 global using HealthChecks.UI.Client;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+global using System.Text.Json.Serialization;
+global using Marten.Schema;

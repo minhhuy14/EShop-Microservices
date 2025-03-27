@@ -1,5 +1,3 @@
-using CatalogAPI.DTOs;
-
 namespace CatalogAPI.Products.GetProducts;
 
 public class GetProductsQuery: IQuery<GetProductsResponse>

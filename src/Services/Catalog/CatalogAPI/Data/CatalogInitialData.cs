@@ -1,5 +1,3 @@
-using Marten.Schema;
-
 namespace CatalogAPI.Data;
 
 public class CatalogInitialData:IInitialData
