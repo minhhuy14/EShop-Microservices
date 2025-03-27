@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Add services to the container.
 
 var assembly = typeof(Program).Assembly;
+
 builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssemblies(assembly);
@@ -36,8 +37,9 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog API", Version = "v1" });
 });
 
-// builder.Services.AddHealthChecks()
-//     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
+    .AddRedis(builder.Configuration.GetConnectionString("Redis")!);
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
@@ -47,14 +49,6 @@ builder.Services.AddStackExchangeRedisCache(options=>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis")!;
 });
-
-// builder.Services.AddScoped<IBasketRepository>(provider => 
-// {
-//         var basketRepository = provider.GetRequiredService<IBasketRepository>();
-//
-//         return new CachedBasketRepository(basketRepository, provider.GetRequiredService<IDistributedCache>());
-// });
-
 
 var app = builder.Build();
 
@@ -70,11 +64,11 @@ if (app.Environment.IsDevelopment())
     
 }
 
-// app.UseHealthChecks("/health",
-//     new HealthCheckOptions
-//     {
-//         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-//     });
+app.UseHealthChecks("/health",
+    new HealthCheckOptions
+    {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    });
 
 app.MapCarter();
 
