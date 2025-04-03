@@ -9,10 +9,18 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
+     
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Carter" Version="8.2.1" />
+      <PackageReference Include="Google.Protobuf" Version="3.30.2" />
+      <PackageReference Include="Grpc.AspNetCore" Version="2.70.0" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.70.0" />
+      <PackageReference Include="Grpc.Tools" Version="2.71.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="Marten" Version="7.38.1" />
       <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.0-preview.1.25120.3" />
       <PackageReference Include="Scrutor" Version="6.0.1" />
@@ -22,6 +30,10 @@
       <Content Include="..\..\..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="Protos/discount.proto" GrpcServices="Client" />
     </ItemGroup>
 
 </Project>
