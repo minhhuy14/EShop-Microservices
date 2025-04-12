@@ -109,7 +109,12 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
                 .HasMaxLength(3)
                 .IsRequired();
 
-            paymentBuilder.Property(p => p.PaymentMethod);
+            paymentBuilder.Property(p => p.Method)
+                .HasDefaultValue(PaymentMethod.InPerson)
+                .HasConversion(
+                    method => method.ToString(),
+                    dbMethod => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), dbMethod)
+                );
 
         });
         
@@ -119,6 +124,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
                 status => status.ToString(),
                 dbStatus => (OrderStatus)Enum.Parse(typeof(OrderStatus), dbStatus));
 
-        builder.Property(o => o.TotalPrice);
+        builder.Property(o => o.TotalPrice)
+            .HasPrecision(18, 2);
     }
 }
