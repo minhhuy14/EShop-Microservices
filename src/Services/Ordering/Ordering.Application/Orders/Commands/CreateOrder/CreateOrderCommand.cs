@@ -1,7 +1,7 @@
 using BuildingBlocks.CQRS;
 using Ordering.Application.Dtos;
 
-namespace Ordering.Application.Orders.Commands;
+namespace Ordering.Application.Orders.Commands.CreateOrder;
 
 public class CreateOrderCommand : ICommand<CreateOrderResponse>
 {
@@ -10,5 +10,5 @@ public class CreateOrderCommand : ICommand<CreateOrderResponse>
 
 public class CreateOrderResponse
 {
-    Guid Id { get; set; }
+    public Guid Id { get; set; }
 }
