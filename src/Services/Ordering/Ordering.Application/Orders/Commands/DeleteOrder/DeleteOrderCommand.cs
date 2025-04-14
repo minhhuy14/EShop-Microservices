@@ -1,11 +1,11 @@
 namespace Ordering.Application.Orders.Commands.DeleteOrder;
 
-public class DeleteOrderCommand : ICommand<DeleteOrderResponse>
+public class DeleteOrderCommand(Guid orderId) : ICommand<DeleteOrderResult>
 {
-    public Guid OrderId { get; set; }
+    public Guid OrderId { get; set; }= orderId; 
 }
 
-public class DeleteOrderResponse
+public class DeleteOrderResult
 {
     public bool IsSuccess { get; set; }
 }

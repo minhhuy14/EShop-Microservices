@@ -7,7 +7,7 @@ public static class OrderExtensions
        return orders.Select(order => new OrderDto
         {
             Id = order.Id.Value,
-            Name = order.OrderName.Value,
+            OrderName = order.OrderName.Value,
             CustomerId = order.CustomerId.Value,
             ShippingAddress = new AddressDto
             {

@@ -3,9 +3,9 @@ using Ordering.Application.Extensions;
 
 namespace Ordering.Application.Orders.Queries.GetOrdersByCustomer;
 
-public class GetOrdersByCustomerHandler(IApplicationDbContext dbContext) : IQueryHandler<GetOrdersByCustomerQuery, GetOrdersByCustomerResponse>
+public class GetOrdersByCustomerHandler(IApplicationDbContext dbContext) : IQueryHandler<GetOrdersByCustomerQuery, GetOrdersByCustomerResult>
 {
-    public async Task<GetOrdersByCustomerResponse> Handle(GetOrdersByCustomerQuery query, CancellationToken cancellationToken)
+    public async Task<GetOrdersByCustomerResult> Handle(GetOrdersByCustomerQuery query, CancellationToken cancellationToken)
     {
         //Get order by customer from db
         //Return result
@@ -14,10 +14,10 @@ public class GetOrdersByCustomerHandler(IApplicationDbContext dbContext) : IQuer
             .Include(o => o.OrderItems)
             .AsNoTracking()
             .Where(o => o.CustomerId==CustomerId.Of(query.CustomerId))
-            .OrderBy(o => o.OrderName)
+            .OrderBy(o => o.OrderName.Value)
             .ToListAsync(cancellationToken);
 
-        return new GetOrdersByCustomerResponse
+        return new GetOrdersByCustomerResult
         {
             Orders = orders.ToOrderDtosList()
         };

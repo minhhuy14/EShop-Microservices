@@ -1,8 +1,8 @@
 namespace Ordering.Application.Orders.Commands.UpdateOrder;
 
-public class UpdateOrderHandler(IApplicationDbContext dbContext) : ICommandHandler<UpdateOrderCommand, UpdateOrderResponse>
+public class UpdateOrderHandler(IApplicationDbContext dbContext) : ICommandHandler<UpdateOrderCommand, UpdateOrderResult>
 {
-    public async Task<UpdateOrderResponse> Handle(UpdateOrderCommand command, CancellationToken cancellationToken)
+    public async Task<UpdateOrderResult> Handle(UpdateOrderCommand command, CancellationToken cancellationToken)
     {
         //Update order entity from command object
         //Save to tse
@@ -20,10 +20,11 @@ public class UpdateOrderHandler(IApplicationDbContext dbContext) : ICommandHandl
         
         dbContext.Orders.Update(order);
         await dbContext.SaveChangesAsync(cancellationToken);
-
-        throw new NotImplementedException();
         
-        
+        return new UpdateOrderResult
+        {
+            Id = order.Id.Value
+        };
 
     }
 
@@ -39,7 +40,7 @@ public class UpdateOrderHandler(IApplicationDbContext dbContext) : ICommandHandl
         
         var updatedPayment = Payment.Of(orderDto.Payment.CardName,orderDto.Payment.CardNumber,orderDto.Payment.Expiration,orderDto.Payment.Cvv,orderDto.Payment.Method);
         
-        order.Update(OrderName.Of(orderDto.Name),updatedShippingAddress, updatedBillingAddress, updatedPayment, orderDto.Status);
+        order.Update(OrderName.Of(orderDto.OrderName),updatedShippingAddress, updatedBillingAddress, updatedPayment, orderDto.Status);
         
     }
 

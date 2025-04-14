@@ -6,7 +6,7 @@ public class CreateOrderCommandValidator:AbstractValidator<CreateOrderCommand>
 {
   public CreateOrderCommandValidator()
   {
-    RuleFor(x => x.Order.Name)
+    RuleFor(x => x.Order.OrderName)
       .NotEmpty()
       .WithMessage("Name is required");
     

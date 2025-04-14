@@ -1,8 +1,8 @@
 namespace Ordering.Application.Orders.Commands.DeleteOrder;
 
-public class DeleteOrderCommandHandler(IApplicationDbContext dbContext) : ICommandHandler<DeleteOrderCommand,DeleteOrderResponse>
+public class DeleteOrderCommandHandler(IApplicationDbContext dbContext) : ICommandHandler<DeleteOrderCommand,DeleteOrderResult>
 {
-    public async Task<DeleteOrderResponse> Handle(DeleteOrderCommand command, CancellationToken cancellationToken)
+    public async Task<DeleteOrderResult> Handle(DeleteOrderCommand command, CancellationToken cancellationToken)
     {
         //Delete order from command object
         //Save to db
@@ -18,7 +18,7 @@ public class DeleteOrderCommandHandler(IApplicationDbContext dbContext) : IComma
         
         dbContext.Orders.Remove(order);
         await dbContext.SaveChangesAsync(cancellationToken);
-        return new DeleteOrderResponse
+        return new DeleteOrderResult
         {
            IsSuccess = true
         };

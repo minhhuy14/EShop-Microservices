@@ -7,7 +7,7 @@ public class OrderDto
 {
     public Guid Id { get; set; }
     public Guid CustomerId { get; set; }
-    public string Name { get; set; }
+    public string OrderName { get; set; }
     
     public AddressDto ShippingAddress { get; set; }
     public AddressDto BillingAddress { get; set; }

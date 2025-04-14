@@ -4,9 +4,9 @@ using Ordering.Application.Dtos;
 
 namespace Ordering.Application.Orders.Commands.CreateOrder;
 
-public class CreateOrderHandler(IApplicationDbContext dbContext) : ICommandHandler<CreateOrderCommand, CreateOrderResponse>
+public class CreateOrderHandler(IApplicationDbContext dbContext) : ICommandHandler<CreateOrderCommand, CreateOrderResult>
 {
-    public async Task<CreateOrderResponse> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
+    public async Task<CreateOrderResult> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
     {
         //Create order entity from command object
         //Save to the database
@@ -17,7 +17,7 @@ public class CreateOrderHandler(IApplicationDbContext dbContext) : ICommandHandl
         dbContext.Orders.Add(order);
         await dbContext.SaveChangesAsync(cancellationToken);
         
-        return new CreateOrderResponse
+        return new CreateOrderResult
         {
             Id = order.Id.Value
         };
@@ -34,7 +34,7 @@ public class CreateOrderHandler(IApplicationDbContext dbContext) : ICommandHandl
             orderDto.BillingAddress.EmailAddress, orderDto.BillingAddress.AddressLine, orderDto.BillingAddress.Country,
             orderDto.BillingAddress.State, orderDto.BillingAddress.ZipCode);
         
-        var newOrder = Order.Create(OrderId.Of(Guid.NewGuid()),CustomerId.Of(orderDto.CustomerId),OrderName.Of(orderDto.Name),shippingAddress,billingAddress,Payment.Of(orderDto.Payment.CardName,orderDto.Payment.CardNumber,orderDto.Payment.Expiration,orderDto.Payment.Cvv,orderDto.Payment.Method),orderDto.Status);
+        var newOrder = Order.Create(OrderId.Of(Guid.NewGuid()),CustomerId.Of(orderDto.CustomerId),OrderName.Of(orderDto.OrderName),shippingAddress,billingAddress,Payment.Of(orderDto.Payment.CardName,orderDto.Payment.CardNumber,orderDto.Payment.Expiration,orderDto.Payment.Cvv,orderDto.Payment.Method),orderDto.Status);
 
         foreach (var orderItemDto in orderDto.OrderItems)
         {

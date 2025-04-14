@@ -1,11 +1,11 @@
 namespace Ordering.Application.Orders.Queries.GetOrdersByName;
 
-public class GetOrdersByNameQuery : IQuery<GetOrdersByNameResponse>
+public class GetOrdersByNameQuery(string orderName) : IQuery<GetOrdersByNameResult>
 {
-    public string Name { get; set; }
+    public string Name { get; set; }= orderName;
 }
-
-public class GetOrdersByNameResponse
+    
+public class GetOrdersByNameResult
 {
     public IEnumerable<OrderDto> Orders { get; set; }
 }

@@ -4,9 +4,9 @@ using Ordering.Application.Extensions;
 
 namespace Ordering.Application.Orders.Queries.GetOrders;
 
-public class GetOrdersHandler(IApplicationDbContext dbContext) : IQueryHandler<GetOrdersQuery, GetOrdersResponse>
+public class GetOrdersHandler(IApplicationDbContext dbContext) : IQueryHandler<GetOrdersQuery, GetOrdersResult>
 {
-    public async Task<GetOrdersResponse> Handle(GetOrdersQuery query, CancellationToken cancellationToken)
+    public async Task<GetOrdersResult> Handle(GetOrdersQuery query, CancellationToken cancellationToken)
     {
         //Get order with pagination from db
         //Return result
@@ -25,7 +25,7 @@ public class GetOrdersHandler(IApplicationDbContext dbContext) : IQueryHandler<G
             .ToListAsync(cancellationToken);
 
 
-        return new GetOrdersResponse
+        return new GetOrdersResult
         {
             Orders = new PaginatedResult<OrderDto>
             {
