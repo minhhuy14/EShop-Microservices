@@ -18,7 +18,7 @@ public class Order: Aggregate<OrderId>
     
     public Payment Payment { get; private set; } = default!;
     
-    public OrderStatus? Status { get; private set; } = OrderStatus.Pending;
+    public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
     public decimal TotalPrice
     {
