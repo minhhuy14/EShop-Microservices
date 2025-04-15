@@ -86,7 +86,6 @@
     volumes:
       - redis-data:/data
     
-  
   orderdb:
     container_name: orderdb
     environment:
@@ -94,3 +93,14 @@
       SA_PASSWORD: Huy123456@
     ports:
       - "1433:1433"
+  
+  messagebroker:
+    container_name: messagebroker
+    hostname: ecommerce-mq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
