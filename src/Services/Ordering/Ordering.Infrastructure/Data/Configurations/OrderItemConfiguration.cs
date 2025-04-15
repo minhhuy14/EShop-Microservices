@@ -22,6 +22,7 @@ public class OrderItemConfiguration:IEntityTypeConfiguration<OrderItem>
         builder.Property(oi => oi.Quantity).IsRequired();
         
         builder.Property(oi=> oi.Price)
+            .HasColumnType("decimal(18,2)")
             .IsRequired();
     }
 }

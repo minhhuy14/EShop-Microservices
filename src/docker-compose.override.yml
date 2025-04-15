@@ -86,3 +86,11 @@
     volumes:
       - redis-data:/data
     
+  
+  orderdb:
+    container_name: orderdb
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: Huy123456@
+    ports:
+      - "1433:1433"

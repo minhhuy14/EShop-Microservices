@@ -10,7 +10,12 @@ services:
     image: redis
     restart: always
     
-    
+  
+  orderdb:
+    image:  mcr.microsoft.com/mssql/server
+  
+  
+  
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
