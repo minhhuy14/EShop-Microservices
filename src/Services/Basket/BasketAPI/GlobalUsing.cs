@@ -12,3 +12,4 @@ global using Microsoft.OpenApi.Models;
 global using BuildingBlocks.Exceptions;
 global using BasketAPI.Data;
 global using BasketAPI.Exceptions;
+global using BasketAPI.Dtos;
