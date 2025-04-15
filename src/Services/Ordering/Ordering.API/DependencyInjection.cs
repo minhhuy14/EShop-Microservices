@@ -13,7 +13,6 @@ public static class DependencyInjection
         services.AddHealthChecks()
             .AddSqlServer(configuration.GetConnectionString("Database"));
         
-
         return services;
     }
     
