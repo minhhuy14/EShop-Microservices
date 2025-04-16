@@ -1,0 +1,16 @@
+namespace BasketAPI.CheckoutBasket;
+
+public class CheckoutBasketCommandValidator : AbstractValidator<CheckoutBasketCommand>
+{
+    public CheckoutBasketCommandValidator()
+    {
+        RuleFor(x=> x.BasketCheckoutDto)
+            .NotNull()
+            .WithMessage("BasketId is required.");
+        
+        RuleFor(x => x.BasketCheckoutDto.UserName)
+            .NotEmpty()
+            .WithMessage("UserName is required.");
+    }
+    
+}

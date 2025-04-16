@@ -29,7 +29,6 @@ public static class DatabaseExtensions
         {
             await context.Orders.AddRangeAsync(InitialData.OrdersWithItems);
             await context.SaveChangesAsync();
-            
         }
     }
 
