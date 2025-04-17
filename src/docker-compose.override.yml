@@ -81,6 +81,19 @@
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    
+    
+  shopping_web:
+    container_name: shopping_web
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        ASPNETCORE_HTTP_PORT: 8080
+        ApiSettings__GatewayAddress: "http://yarnapigateway:8080"
+    ports:
+      - "6005:8080"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
   
   
   catalogdb:
