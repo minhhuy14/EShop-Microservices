@@ -3,7 +3,7 @@ My name is Le Minh Huy, This is my personal project, providing in-depth knowledg
 
 # Technology used
 ## Back-end
-- **RESTful APIs implementation** using [**ASP.NET Core**](https://dotnet.microsoft.com/en-us/apps/aspnet) and [**C# 12**](https://learn.microsoft.com/en-us/dotnet/csharp/)
+- **RESTful APIs implementation** using [**ASP.NET Core**](https://dotnet.microsoft.com/en-us/apps/aspnet)
 - Applied **Vertical Slice Architecture**, **CQRS**, **DDD**, **Clean Architecture**
 - Used [**MediatR**](https://github.com/jbogard/MediatR) for commands, queries, and pipeline behaviors
 - Validation with [**FluentValidation**](https://fluentvalidation.net/)
@@ -36,8 +36,8 @@ docker-compose up -d
 5. All done, you can access:
 - Frontend: http://localhost:6005
 - Backend: 
-  - Gateway: http://localhost:6004
   - Catalog Service: http://localhost:6000
   - Basket Service: http://localhost:6001
   - Discount Grpc Service: http://localhost:6002
   - Order Service: http://localhost:6003
+  - Gateway: http://localhost:6004
